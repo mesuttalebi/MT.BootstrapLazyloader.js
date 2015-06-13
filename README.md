@@ -22,7 +22,7 @@ If you don't use nuget package manager, just download source code, and copy MT.B
 ##Using
 1- Add a reference to **/Scripts/MT.BootstrapTabsLazyLoader.js** to the scripts part of your code, after **jquery.js** and **bootstrap.js**
 
-2- add class **.lazyloading** to nav-tabs (bootstrap tabs ul tag)
+2- add class **.lazyload** to nav-tabs (bootstrap tabs ul tag)
 
 3- add **data-url** to the **anchor** tag of every tab you want to lazyload. this attribute will contain the url of partial pages you want to load it into the tab.
 **Example**
