@@ -38,8 +38,9 @@ If you don't use nuget package manager, just download source code, and copy MT.B
     </ul>
     
 4- If you are lazy loading your initial tab, you can add a trigger('shown.bs.tab') on your initial tab.
-**MVC Example on the same page as your tabs**
 
+**MVC Example on the same page as your tabs**
+```
 @section scripts {
         <script type="text/javascript">
             $(document).ready(function () {                
@@ -47,3 +48,4 @@ If you don't use nuget package manager, just download source code, and copy MT.B
             });
         </script>
 }
+```
