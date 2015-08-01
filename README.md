@@ -24,7 +24,7 @@ If you don't use nuget package manager, just download source code, and copy MT.B
 
 2- add class **.lazyload** to nav-tabs (bootstrap tabs ul tag)
 
-3- add **data-url** to the **anchor** tag of every tab you want to lazyload. this attribute will contain the url of partial pages you want to load it into the tab.
+3- add **data-url** to the **anchor** tag of every tab you want to lazyload. this attribute will contain the url of partial pages you want to load it into the tab.  The data-callback attribute can be used to specify a javascript function to be called once the load is done (on the .done() event of the $.get)
 **Example**
 
     
@@ -33,7 +33,19 @@ If you don't use nuget package manager, just download source code, and copy MT.B
         <li class="active"><a href="#fullDesc" data-toggle="tab">Description</a></li>
         <li><a href="#specificationDetails" data-toggle="tab">Specifications</a></li>
         <li><a href="#relatedProducts" data-toggle="tab" data-url="@Url.Action("relatedproducts", new { model.product.id})">Related Products</a></li>
-        <li><a href="#files" data-toggle="tab" data-url="@Url.Action("getproductfiles", new { model.product.id })">Product Files</a></li>
+        <li><a href="#files" data-toggle="tab" data-url="@Url.Action("getproductfiles", new { model.product.id })" data-callback="initProducts()">Product Files</a></li>
         <li><a href="#videos" data-toggle="tab" data-url="@Url.Action("getproductvideos", new { model.product.id })">Product Videos</a></li>
     </ul>
     
+4- If you are lazy loading your initial tab, you can add a trigger('shown.bs.tab') on your initial tab.
+
+**MVC Example on the same page as your tabs**
+```
+@section scripts {
+        <script type="text/javascript">
+            $(document).ready(function () {                
+                $('.nav-tabs a[href="#fullDesc"]').trigger('shown.bs.tab');
+            });
+        </script>
+}
+```
