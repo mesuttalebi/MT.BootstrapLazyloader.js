@@ -1,10 +1,12 @@
 /*
 Nuget Package: MT.BootstrapTabsLazyLoader.js 
-Version: 1.0.0
+Version: 1.1.0
 
 Created By: Mesut Talebi (mesut.talebi@gmail.com)
 
 Adds Lazy loading feature to bootstrap tabs
+
+Thanks To ChrisDerrig: Added lazy loading feature to bootstrap pills and callback that is loaded on ajax get done.
 
 */
 
