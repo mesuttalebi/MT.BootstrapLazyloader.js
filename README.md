@@ -9,7 +9,7 @@ This package adds lazyloading option to bootstrap tabs, pills and modals so cont
 
 If you use nuget package manager, write down this command in nuget package manager console
 
-<code>Install-Package MT.BootstrapTabsLazyLoader.js</code>
+<code>Install-Package MT.BootstrapLazyLoader.js</code>
 
 This packages also depends on: <br />
 Jquery >=2.0.0<br />
