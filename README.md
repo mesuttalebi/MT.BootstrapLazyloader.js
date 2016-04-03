@@ -43,6 +43,12 @@ C2) add **data-header** to define the Modal's Header.
 
 C3) add **data-size** to define the Modal's size. (Example: data-size="modal-lg", don't set it you want default size.)
 
+C4) If you are using lazyload modal on an Anchor element, the **href** attribute will be used as **url** and you don't need to add extra data-url.
+
+C5) By Default the Id For lazyload modal is *"LazyloadModal"*, but you can add **id** attribute to the tag that will used to toggle modal, so the id for modal will be
+Id + "Modal". with adding id to the toggle you can open multiple inner modals.
+
+
 **Note: Modal's Markup will automatically append to body, and you don't need to add Modal's markup to body manually.**
 
 **Callback function after Ajax Loaded**
@@ -86,16 +92,17 @@ note: If you are lazy loading your initial tab, you can add a trigger('shown.bs.
      data-header="Preview Product" data-size="modal-lg" data-callback="initProducts()">Preview</button>
 ```
 
+
+
 *The Returned Partial View Content:*
 
 ```
 <div class="modal-body">
-    <!--Contents goes here-->
-
-    <div class="modal-footer">
+    <!--Contents goes here-->    
+</div>
+<div class="modal-footer">
         <!--footer buttons goes here-->
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save changes</button>
-    </div>
 </div>
 ```

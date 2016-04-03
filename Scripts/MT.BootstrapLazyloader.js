@@ -1,6 +1,6 @@
 /*
 Nuget Package: MT.BootstrapLazyLoader.js 
-Version: 1.2.0
+Version: 1.2.2
 
 Created By: Mesut Talebi (mesut.talebi@gmail.com)
 
@@ -71,10 +71,26 @@ $(function () {
     });
 
     $(document).on('click', '.lazyload.showModal', function (e) {
-        var loader = '<i class="fa fa-spin fa-spinner fa-2x text-info modal-loader"></i>';
         var currHandle = $(this);
+        var url = $(currHandle).data('url');
+        if ($(this).prop("tagName") == "A" && url == undefined) {
+            e.preventDefault();
+            url = $(currHandle).attr('href');
+        }
+
+        var loader = '<i class="fa fa-spin fa-spinner fa-lg text-info modal-loader"></i>';
+
+        //Get Id Of Current Handler to set as Modal Id,  the id of modal will be #HandlerId + Modal
+        var currHandleId = $(currHandle).attr('id');
+
+        if (currHandleId == undefined) {
+            currHandleId = "LazyloadModal";
+        } else {
+            currHandleId += "Modal";
+        }
+
         var modalHtml = "<!--Lazyloaded Modal -->" +
-        "<div class='modal fade' id='LazyloadModal' role='dialog' aria-labelledby='LazyloadModal'>" +
+        "<div class='modal fade' id='" + currHandleId + "' role='dialog' aria-labelledby='" + currHandleId + "'>" +
         "<div class='modal-dialog' role='document'>" +
         "<div class='modal-content'>" +
             "<div class='modal-header'>" +
@@ -86,20 +102,21 @@ $(function () {
         "</div>" +
         "</div>";
 
-        var url = $(currHandle).data('url');
+
+
         var modalHeader = $(currHandle).data('header');
         var modalClass = $(currHandle).data('size');
         var callback = $(currHandle).data('callback');
 
-        var modal = $('#LazyloadModal');
+        var modal = $('#' + currHandleId);
         if (modal.length == 0) {
             $('body').append(modalHtml);
 
-            modal = $('#LazyloadModal');
+            modal = $('#' + currHandleId);
         }
 
         $(modal).find('.modal-header #LazyloadModalLabel').html(modalHeader);
-        $(modal).find('.modal-dialog').addClass(modalClass);
+        $(modal).find('.modal-dialog').removeAttr("class").addClass('.modal-dialog').addClass(modalClass);
 
         //Ajax Get
         $(modal).find('#LazyloadModalContent').html('');

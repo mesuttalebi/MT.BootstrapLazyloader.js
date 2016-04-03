@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/config/applicationhost.config
+/.vs/Mt.BootstrapLazyload.js/v14/.suo
+/Mt.BootstrapLazyload.js.sln
