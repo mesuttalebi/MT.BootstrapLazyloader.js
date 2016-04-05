@@ -1,6 +1,6 @@
 /*
 Nuget Package: MT.BootstrapLazyLoader.js 
-Version: 1.2.2
+Version: 1.2.3
 
 Created By: Mesut Talebi (mesut.talebi@gmail.com)
 
@@ -116,7 +116,7 @@ $(function () {
         }
 
         $(modal).find('.modal-header #LazyloadModalLabel').html(modalHeader);
-        $(modal).find('.modal-dialog').removeAttr("class").addClass('.modal-dialog').addClass(modalClass);
+        $(modal).find('.modal-dialog').removeAttr("class").addClass('modal-dialog').addClass(modalClass);
 
         //Ajax Get
         $(modal).find('#LazyloadModalContent').html('');
