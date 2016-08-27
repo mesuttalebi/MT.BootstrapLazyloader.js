@@ -1,6 +1,6 @@
 /*
 Nuget Package: MT.BootstrapLazyLoader.js 
-Version: 1.2.3
+Version: 1.2.4
 
 Created By: Mesut Talebi (mesut.talebi@gmail.com)
 
@@ -89,18 +89,25 @@ $(function () {
             currHandleId += "Modal";
         }
 
+
+        var disableClose = $(currHandle).data('closedisabled');
+
         var modalHtml = "<!--Lazyloaded Modal -->" +
         "<div class='modal fade' id='" + currHandleId + "' role='dialog' aria-labelledby='" + currHandleId + "'>" +
         "<div class='modal-dialog' role='document'>" +
         "<div class='modal-content'>" +
-            "<div class='modal-header'>" +
-                "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" +
-                "<h4 class='modal-title' id='LazyloadModalLabel'>Modal Header</h4>" +
-            "</div>" +
-            "<div id='LazyloadModalContent'></div>" +
-        "</div>" +
-        "</div>" +
-        "</div>";
+            "<div class='modal-header'>";
+
+        if (disableClose == undefined || disableClose === 'false') {
+            modalHtml += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
+        }
+
+        modalHtml += "<h4 class='modal-title' id='LazyloadModalLabel'>Modal Header</h4>" +
+    "</div>" +
+    "<div id='LazyloadModalContent'></div>" +
+"</div>" +
+"</div>" +
+"</div>";
 
 
 
@@ -108,11 +115,15 @@ $(function () {
         var modalClass = $(currHandle).data('size');
         var callback = $(currHandle).data('callback');
 
+
         var modal = $('#' + currHandleId);
         if (modal.length == 0) {
             $('body').append(modalHtml);
 
             modal = $('#' + currHandleId);
+        }
+        else {
+            $('body').append(modal);
         }
 
         $(modal).find('.modal-header #LazyloadModalLabel').html(modalHeader);
@@ -123,7 +134,15 @@ $(function () {
         $(currHandle).append(loader);
         $.get(url, function (data) {
             $(modal).find('#LazyloadModalContent').html(data);
-            $(modal).modal('show');
+            if (disableClose == undefined) {
+                $(modal).modal('show');
+            }
+            else {
+                $(modal).modal({
+                    keyboard: false,
+                    backdrop: 'static'
+                });
+            }
         }).fail(function () {
             var alertDiv = '<div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> Error!!!</div>';
             $(modal).find('#LazyloadModalContent').html(alertDiv);

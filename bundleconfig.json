@@ -1,6 +1,6 @@
 [
   {
-    "outputFileName": "Scripts/MT.BootstrapLazyloader.js",
+    "outputFileName": "Scripts/MT.BootstrapLazyloader.min.js",
     "inputFiles": [
       "Scripts/MT.BootstrapLazyloader.js"
     ]

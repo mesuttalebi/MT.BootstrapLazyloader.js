@@ -41,13 +41,14 @@ C1) For Using MT.BoostrapLazyloader with modals, add **.lazyload** and **.showMo
 
 C2) add **data-header** to define the Modal's Header.
 
-C3) add **data-size** to define the Modal's size. (Example: data-size="modal-lg", don't set it you want default size.)
+C3) add **data-size** to define the Modal's size. (Example: data-size="modal-lg", don't set it if you want default size.)
 
 C4) If you are using lazyload modal on an Anchor element, the **href** attribute will be used as **url** and you don't need to add extra data-url.
 
 C5) By Default the Id For lazyload modal is *"LazyloadModal"*, but you can add **id** attribute to the tag that will used to toggle modal, so the id for modal will be
 Id + "Modal". with adding id to the toggle you can open multiple inner modals.
 
+C6) **(New)** to prevent modal from closing by clicking the close button, pressing 'Esc' key or by clicking outside of the modal, you just need to add **data-closedisabled='false'**.
 
 **Note: Modal's Markup will automatically append to body, and you don't need to add Modal's markup to body manually.**
 
@@ -104,5 +105,7 @@ note: If you are lazy loading your initial tab, you can add a trigger('shown.bs.
         <!--footer buttons goes here-->
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save changes</button>
-</div>
+</div >
+
 ```
+
