@@ -13,7 +13,7 @@ If you use nuget package manager, write down this command in nuget package manag
 
 If yout use Bower package manager, write down this command:
 
-<code>bower install mt.bootstraplazyloader.js</code>
+<code>bower install mt-bootstraplazyloader</code>
 
 This packages also depends on: <br />
 Jquery >=2.0.0<br />
