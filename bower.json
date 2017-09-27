@@ -1,0 +1,32 @@
+{
+  "name": "mt.bootstraplazyloader.js",
+  "version": "1.3.0",
+  "homepage": "https://github.com/mesuttalebi/MT.BootstrapLazyloader.js",
+  "authors": [
+    "mesut talebi <mesut.talebi@gmail.com>"
+  ],
+  "description": "Lazy Loader For Bootstrap Tabs",
+  "main": "Scripts/MT.BootstrapLazyloader.js",
+  "keywords": [
+    "bootstrap",
+    "lazylaod",
+    "lazyload",
+    "modal",
+    "bootstrap-tabs",
+    "bootstrap-modal",
+    "bootstrap-pills"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "2.2.4",
+    "bootstrap": "3.3.7",
+    "font-awesome": "font-awsome#4.6.0"
+  }
+}
