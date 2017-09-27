@@ -11,6 +11,10 @@ If you use nuget package manager, write down this command in nuget package manag
 
 <code>Install-Package MT.BootstrapLazyLoader.js</code>
 
+If yout use Bower package manager, write down this command:
+
+<code>bower install mt.bootstraplazyloader.js</code>
+
 This packages also depends on: <br />
 Jquery >=2.0.0<br />
 Bootstrap >=3.0.0<br />
