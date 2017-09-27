@@ -3,9 +3,9 @@ Lazy Loader For Bootstrap Tabs, Pills and Modals
 
 This package adds lazyloading option to bootstrap tabs, pills and modals so contents will load when the user clicks it.
 
+## How To Use
 
-#How To Use
-##Install
+## Install
 
 If you use nuget package manager, write down this command in nuget package manager console
 
@@ -19,7 +19,7 @@ FontAwsome >=4.2.0<br />
 If you don't use nuget package manager, just download source code, and copy MT.BootstrapTabsLazyLoader.js into your scripts folder.
 
 
-##Using
+## Using
 
 Add a reference to **/Scripts/MT.BootstrapLazyLoader.js** to the scripts part of your code, after **jquery.js** and **bootstrap.js**
 
