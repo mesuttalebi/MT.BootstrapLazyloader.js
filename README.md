@@ -3,6 +3,8 @@ Lazy Loader For Bootstrap Tabs, Pills and Modals
 
 This package adds lazyloading option to bootstrap tabs, pills and modals so contents will load when the user clicks it.
 
+**NOT** To use with bootstrap 4 lazyload modal set **MTLazyloadBootstrapVersion = 4** in global scope.
+
 ## How To Use
 
 ## Install
