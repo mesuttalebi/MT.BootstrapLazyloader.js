@@ -6,3 +6,5 @@
 /.vs/Mt.BootstrapLazyload.js/v14/.suo
 /Mt.BootstrapLazyload.js.sln
 /.vs
+/node_modules
+/bower_components

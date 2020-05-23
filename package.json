@@ -1,0 +1,33 @@
+{
+  "name": "mt.bootstraplazyloader",
+  "version": "1.4.0",
+  "description": "Lazy Loader for Bootstrap Tabs,Pills and Modals,This package adds lazyloading option to bootstrap tabs,pills, and Modals so content will load when the user clicks it.",
+  "main": "Scripts/MT.BootstrapLazyloader.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mesuttalebi/MT.BootstrapLazyloader.js.git"
+  },
+  "keywords": [
+    "Bootstrap",
+    "Lazyloading",
+    "lazyload",
+    "collapse",
+    "lazyloadmodal",
+    "lazyloadtab",
+    "bootstraplazyload"
+  ],
+  "author": "Mesut Talebi",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/mesuttalebi/MT.BootstrapLazyloader.js/issues"
+  },
+  "homepage": "https://github.com/mesuttalebi/MT.BootstrapLazyloader.js#readme",
+  "dependencies": {
+    "jquery": ">=2.1.0",
+    "bootstrap": ">=3.1.1",
+    "font-awesome": ">=4.0.3"
+  }
+}
