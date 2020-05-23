@@ -1,6 +1,6 @@
 /*
 Nuget Package: MT.BootstrapLazyLoader.js 
-Version: 1.3.0
+Version: 1.4.0
 
 Created By: Mesut Talebi (mesut.talebi@gmail.com)
 
@@ -29,7 +29,7 @@ var MTLazyloader = function () {
             //Get Id Of Current Handler to set as Modal Id,  the id of modal will be #HandlerId + Modal
             var currHandleId = modalId;
 
-            if (currHandleId == undefined || currHandleId == null) {
+            if (currHandleId === undefined || currHandleId === null) {
                 currHandleId = "LazyloadModal";
             } else {
                 currHandleId += "Modal";
@@ -38,48 +38,46 @@ var MTLazyloader = function () {
             var disableClose = parDisableClose;
 
             var modalContentId = '#LazyloadModalContent';
-            if (contentId != undefined && contentId != null) {
+            if (contentId !== undefined && contentId !== null) {
                 modalContentId = "#" + contentId;
             }
-
-
-            var modalHtml = "<!--Lazyloaded Modal -->" +
-            "<div class='modal fade' id='" + currHandleId + "' role='dialog' aria-labelledby='" + currHandleId + "'>" +
-            "<div class='modal-dialog' role='document'>" +
-            "<div class='modal-content'>" +
-                "<div class='modal-header'>";
-
-            if (disableClose == undefined || disableClose === 'false' || disableClose == null) {
-                modalHtml += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
-            }
-
-            modalHtml += "<h4 class='modal-title' id='LazyloadModalLabel'>Modal Header</h4>" +
-                "</div>" +
-                "<div id='" + modalContentId.substr(1) + "'></div>" +
-                "</div>" +
-                "</div>" +
-                "</div>";
-
-
-
             var modalHeader = header;
             var modalClass = size;
             var callback = parCallback;
 
+            var modalHtml = "<!--Lazyloaded Modal -->" +
+                "<div class='modal " + (MTLazyloadBootstrapVersion !== 4 ? "fade" : "") + "' id='" + currHandleId + "' role='dialog' aria-labelledby='" + currHandleId + "'>" +
+                "<div class='modal-dialog " + modalClass + "' role='document'>" +
+                "<div class='modal-content'>" +
+                "<div class='modal-header'>";
 
+            if (MTLazyloadBootstrapVersion === 4) {
+                modalHtml += "<h5 class='modal-title'>" + modalHeader + "</h5>";
+            }
 
+            if (disableClose === undefined || disableClose === 'false') {
+                modalHtml += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
+            }
+
+            if (MTLazyloadBootstrapVersion !== 4) {
+                modalHtml += "<h4 class='modal-title' id='LazyloadModalLabel'>" + modalHeader + "</h4>";
+            }
+
+            modalHtml += "</div>" +
+                "<div id='" + modalContentId.substr(1) + "'></div>" +
+                "</div>" +
+                "</div>" +
+                "</div>";
+                    
             var modal = $('#' + currHandleId);
-            if (modal.length == 0) {
+            if (modal.length === 0) {
                 $('body').append(modalHtml);
 
                 modal = $('#' + currHandleId);
             }
             else {
                 $('body').append(modal);
-            }
-
-            $(modal).find('.modal-header .modal-title').html(modalHeader);
-            $(modal).find('.modal-dialog').removeAttr("class").addClass('modal-dialog').addClass(modalClass);
+            }          
 
             //Ajax Get
             $(modal).find(modalContentId).html('');
@@ -109,6 +107,8 @@ var MTLazyloader = function () {
         }
     }
 }();
+
+var MTLazyloadBootstrapVersion = 3;
 
 $(function () {
     $(document).on('shown.bs.tab', '.nav-tabs.lazyload a[data-toggle="tab"]:not(.loaded)', function (e) {
@@ -169,10 +169,10 @@ $(function () {
         }
     });
 
-    $(document).on('click', '.lazyload.showModal', function (e) {
+    $(document).on('click', '.lazyload.showModal', function (e) {        
         var currHandle = $(this);
         var url = $(currHandle).data('url');
-        if ($(this).prop("tagName") == "A" && url == undefined) {
+        if ($(this).prop("tagName") === "A" && url === undefined) {
             e.preventDefault();
             url = $(currHandle).attr('href');
         }
@@ -182,41 +182,44 @@ $(function () {
         //Get Id Of Current Handler to set as Modal Id,  the id of modal will be #HandlerId + Modal
         var currHandleId = $(currHandle).attr('id');
 
-        if (currHandleId == undefined) {
+        if (currHandleId === undefined) {
             currHandleId = "LazyloadModal";
         } else {
             currHandleId += "Modal";
         }
-
-
+        
         var disableClose = $(currHandle).data('closedisabled');
+        var modalHeader = $(currHandle).data('header');
+        var modalClass = $(currHandle).data('size');
 
         var modalHtml = "<!--Lazyloaded Modal -->" +
-        "<div class='modal fade' id='" + currHandleId + "' role='dialog' aria-labelledby='" + currHandleId + "'>" +
-        "<div class='modal-dialog' role='document'>" +
+        "<div class='modal " + (MTLazyloadBootstrapVersion !== 4 ? "fade" : "") + "' id='" + currHandleId + "' role='dialog' aria-labelledby='" + currHandleId + "'>" +
+        "<div class='modal-dialog " + modalClass + "' role='document'>" +
         "<div class='modal-content'>" +
             "<div class='modal-header'>";
 
-        if (disableClose == undefined || disableClose === 'false') {
+        if (MTLazyloadBootstrapVersion === 4) {
+            modalHtml += "<h5 class='modal-title'>" + modalHeader + "</h5>";
+        }
+
+        if (disableClose === undefined || disableClose === 'false') {
             modalHtml += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
         }
 
-        modalHtml += "<h4 class='modal-title' id='LazyloadModalLabel'>Modal Header</h4>" +
-    "</div>" +
-    "<div id='LazyloadModalContent'></div>" +
+        if (MTLazyloadBootstrapVersion !== 4) {
+            modalHtml += "<h4 class='modal-title' id='LazyloadModalLabel'>" + modalHeader + "</h4>";
+        }
+
+        modalHtml +="</div>" +
+"<div id='LazyloadModalContent'></div>" +
 "</div>" +
 "</div>" +
 "</div>";
-
-
-
-        var modalHeader = $(currHandle).data('header');
-        var modalClass = $(currHandle).data('size');
+        
         var callback = $(currHandle).data('callback');
 
-
         var modal = $('#' + currHandleId);
-        if (modal.length == 0) {
+        if (modal.length === 0) {
             $('body').append(modalHtml);
 
             modal = $('#' + currHandleId);
@@ -225,15 +228,15 @@ $(function () {
             $('body').append(modal);
         }
 
-        $(modal).find('.modal-header #LazyloadModalLabel').html(modalHeader);
-        $(modal).find('.modal-dialog').removeAttr("class").addClass('modal-dialog').addClass(modalClass);
+        //$(modal).find('.modal-header #LazyloadModalLabel').html(modalHeader);
+        //$(modal).find('.modal-dialog').removeAttr("class").addClass('modal-dialog').addClass(modalClass);
 
         //Ajax Get
         $(modal).find('#LazyloadModalContent').html('');
         $(currHandle).append(loader);
         $.get(url, function (data) {
             $(modal).find('#LazyloadModalContent').html(data);
-            if (disableClose == undefined) {
+            if (disableClose === undefined) {
                 $(modal).modal('show');
             }
             else {
