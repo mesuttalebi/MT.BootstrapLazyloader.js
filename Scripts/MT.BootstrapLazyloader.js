@@ -1,6 +1,6 @@
 /*
 Nuget Package: MT.BootstrapLazyLoader.js 
-Version: 1.4.0
+Version: 1.4.1
 
 Created By: Mesut Talebi (mesut.talebi@gmail.com)
 
@@ -68,7 +68,7 @@ var MTLazyloader = function () {
                 "</div>" +
                 "</div>" +
                 "</div>";
-                    
+
             var modal = $('#' + currHandleId);
             if (modal.length === 0) {
                 $('body').append(modalHtml);
@@ -77,7 +77,7 @@ var MTLazyloader = function () {
             }
             else {
                 $('body').append(modal);
-            }          
+            }
 
             //Ajax Get
             $(modal).find(modalContentId).html('');
@@ -113,7 +113,7 @@ var MTLazyloadBootstrapVersion = 3;
 $(function () {
     $(document).on('shown.bs.tab', '.nav-tabs.lazyload a[data-toggle="tab"]:not(.loaded)', function (e) {
         var loader = '<div class="text-center"><i class="fa fa-spin fa-spinner fa-2x text-muted"></i></div>';
-        
+
         var pane = $(e.target).attr('href');
 
         var url = $(e.target).data('url');
@@ -128,15 +128,15 @@ $(function () {
                 $(pane).html(data);
                 $(caller).addClass('loaded');
             })
-            .fail(function () {
-                var alertDiv = '<div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> Error!!!</div>';
-                $(pane).html(alertDiv);
-            })
-            .done(function () {
-                if (callback) {
-                    eval(callback);
-                }
-            });
+                .fail(function () {
+                    var alertDiv = '<div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> Error!!!</div>';
+                    $(pane).html(alertDiv);
+                })
+                .done(function () {
+                    if (callback) {
+                        eval(callback);
+                    }
+                });
         }
     });
 
@@ -157,19 +157,19 @@ $(function () {
                 $(pane).html(data);
                 $(caller).addClass('loaded');
             })
-            .fail(function () {
-                var alertDiv = '<div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> Error!!!</div>';
-                $(pane).html(alertDiv);
-            })
-            .done(function () {
-                if (callback) {
-                    eval(callback);
-                }
-            });
+                .fail(function () {
+                    var alertDiv = '<div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> Error!!!</div>';
+                    $(pane).html(alertDiv);
+                })
+                .done(function () {
+                    if (callback) {
+                        eval(callback);
+                    }
+                });
         }
     });
 
-    $(document).on('click', '.lazyload.showModal', function (e) {        
+    $(document).on('click', '.lazyload.showModal', function (e) {
         var currHandle = $(this);
         var url = $(currHandle).data('url');
         if ($(this).prop("tagName") === "A" && url === undefined) {
@@ -187,35 +187,52 @@ $(function () {
         } else {
             currHandleId += "Modal";
         }
-        
+
         var disableClose = $(currHandle).data('closedisabled');
-        var modalHeader = $(currHandle).data('header');
+        var modalHeaderTemplate = $(currHandle).data('headerTemplate');
         var modalClass = $(currHandle).data('size');
 
         var modalHtml = "<!--Lazyloaded Modal -->" +
-        "<div class='modal " + (MTLazyloadBootstrapVersion !== 4 ? "fade" : "") + "' id='" + currHandleId + "' role='dialog' aria-labelledby='" + currHandleId + "'>" +
-        "<div class='modal-dialog " + modalClass + "' role='document'>" +
-        "<div class='modal-content'>" +
+            "<div class='modal " + (MTLazyloadBootstrapVersion !== 4 ? "fade" : "") + "' id='" + currHandleId + "' role='dialog' aria-labelledby='" + currHandleId + "'>" +
+            "<div class='modal-dialog " + modalClass + "' role='document'>" +
+            "<div class='modal-content'>" +
             "<div class='modal-header'>";
 
+
+        var modalHeaderHtml = "";
+        var isheaderTemaplate = modalHeaderTemplate !== undefined && modalHeaderTemplate.length > 0;
+        var modalHeader = $(currHandle).data('header');
+
         if (MTLazyloadBootstrapVersion === 4) {
-            modalHtml += "<h5 class='modal-title'>" + modalHeader + "</h5>";
+            if (isheaderTemaplate) {
+                modalHeaderHtml = $(modalHeaderTemplate).html();
+            }
+            else {
+                modalHeaderHtml = "<h5 class='modal-title'>" + modalHeader + "</h5>";
+            }
         }
 
         if (disableClose === undefined || disableClose === 'false') {
-            modalHtml += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
+            modalHeaderHtml += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
         }
 
         if (MTLazyloadBootstrapVersion !== 4) {
-            modalHtml += "<h4 class='modal-title' id='LazyloadModalLabel'>" + modalHeader + "</h4>";
+            if (isheaderTemaplate) {
+                modalHeaderHtml = $(modalHeaderTemplate).html();
+            }
+            else {
+                modalHeaderHtml += "<h4 class='modal-title' id='LazyloadModalLabel'>" + modalHeader + "</h4>";
+            }
         }
 
-        modalHtml +="</div>" +
-"<div id='LazyloadModalContent'></div>" +
-"</div>" +
-"</div>" +
-"</div>";
-        
+        modalHtml += modalHeaderHtml;
+
+        modalHtml += "</div>" +
+            "<div id='LazyloadModalContent'></div>" +
+            "</div>" +
+            "</div>" +
+            "</div>";
+
         var callback = $(currHandle).data('callback');
 
         var modal = $('#' + currHandleId);
@@ -227,9 +244,6 @@ $(function () {
         else {
             $('body').append(modal);
         }
-
-        //$(modal).find('.modal-header #LazyloadModalLabel').html(modalHeader);
-        //$(modal).find('.modal-dialog').removeAttr("class").addClass('modal-dialog').addClass(modalClass);
 
         //Ajax Get
         $(modal).find('#LazyloadModalContent').html('');
@@ -278,15 +292,15 @@ $(function () {
                 $(pane).html(data);
                 $(caller).addClass('loaded');
             })
-            .fail(function () {
-                var alertDiv = '<div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> Error!!!</div>';
-                $(pane).html(alertDiv);
-            })
-            .done(function () {
-                if (callback) {
-                    eval(callback);
-                }
-            });
+                .fail(function () {
+                    var alertDiv = '<div class="alert alert-danger"><i class="fa fa-exclamation-triangle"></i> Error!!!</div>';
+                    $(pane).html(alertDiv);
+                })
+                .done(function () {
+                    if (callback) {
+                        eval(callback);
+                    }
+                });
         }
     });
 });

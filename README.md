@@ -56,6 +56,12 @@ Id + "Modal". with adding id to the toggle you can open multiple inner modals.
 
 C6) **(New)** to prevent modal from closing by clicking the close button, pressing 'Esc' key or by clicking outside of the modal, you just need to add **data-closedisabled='false'**.
 
+C7) **(New)** Now you can define a header template target for modal, this is useful if you want to place a customized html in header. for this you should replace **data-header** with **data-header-template** attribute and the value should be a css selector like '#idOfDomElementsThatContainsHtml' or any css selector.
+
+Exmaple Result:
+
+![sample modal with html template header](./images/sample-header-template.png)
+
 **Note: Modal's Markup will automatically append to body, and you don't need to add Modal's markup to body manually.**
 
 **Callback function after Ajax Loaded**

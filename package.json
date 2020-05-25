@@ -1,6 +1,6 @@
 {
   "name": "mt.bootstraplazyloader",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Lazy Loader for Bootstrap Tabs,Pills and Modals,This package adds lazyloading option to bootstrap tabs,pills, and Modals so content will load when the user clicks it.",
   "main": "Scripts/MT.BootstrapLazyloader.js",
   "scripts": {
